@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import '../styles/App.css'
+import '../../styles/App.css'
 
 export default function NavBar() {
 

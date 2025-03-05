@@ -1,0 +1,28 @@
+.localpong-styling {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: 400px;
+    background-color: black;
+    border: 2px solid white;
+}
+
+.game-area {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background-color: black;
+    border: 2px solid white;
+    margin: 0 auto; 
+}
+
+.ball {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgb(119, 4, 4);
+    border-radius: 50%;
+}

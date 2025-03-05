@@ -1,4 +1,4 @@
-import NavBar from '../components/Navbar'
+import NavBar from '../components/Routing/Navbar'
 import Stat from '../components/Stat';
 import '../styles/statspage.css'
 

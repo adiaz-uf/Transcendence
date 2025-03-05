@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Modal } from 'react-bootstrap';
 import '../styles/profile.css'; // Importamos el archivo CSS
-import NavBar from '../components/Navbar';
+import NavBar from '../components/Routing/Navbar';
 
 export default function Profile() {
   // Estado para los datos del perfil

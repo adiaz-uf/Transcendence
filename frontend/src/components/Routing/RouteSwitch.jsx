@@ -1,10 +1,10 @@
-import Home from '../pages/Home'
-import Login from "../pages/Login"
-import Register from '../pages/Register'
-import Stats from '../pages/Statspage'
-import NotFound from "../pages/NotFound"
-import Profile from "../pages/Profile"
-import Alert from '../components/Alert'
+import Home from '../../pages/Home'
+import Login from "../../pages/Login"
+import Register from '../../pages/Register'
+import Stats from '../../pages/Statspage'
+import NotFound from "../../pages/NotFound"
+import Profile from "../../pages/Profile"
+import Alert from '../Alert'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute'
 
