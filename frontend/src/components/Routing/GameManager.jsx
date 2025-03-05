@@ -16,13 +16,20 @@ const GameManager = () => {
       {gameMode === "local" && <Game />}
       {/* {gameMode === "online" && <GameOnline />} */}
       {gameMode !== "menu" && (
+<<<<<<< HEAD
         <button onClick={() => setGameMode("menu")} className="return-select-mode">🏠 Back to Menu</button>
+=======
+        <button onClick={() => setGameMode("menu")}>🏠 Back to Menu</button>
+>>>>>>> 3160b9b (Componentes UI  Pong Local && Navegacion)
       )}
     </div>
   );
 };
 
 export default GameManager;
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 3160b9b (Componentes UI  Pong Local && Navegacion)

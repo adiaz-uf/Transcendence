@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Modal } from 'react-bootstrap';
-import axios from 'axios'; // Importamos axios para hacer las peticiones
-import { ACCESS_TOKEN } from "../constants"; 
-import '../styles/profile.css';
-import NavBar from '../components/Navbar';
-import Stat from '../components/Stat';
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, Card, Modal } from 'react-bootstrap';
+import '../styles/profile.css'; // Importamos el archivo CSS
+import NavBar from '../components/Routing/Navbar';
 
 export default function Profile() {
   
