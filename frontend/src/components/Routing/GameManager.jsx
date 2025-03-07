@@ -16,10 +16,13 @@ const GameManager = () => {
       {gameMode === "local" && <Game />}
       {/* {gameMode === "online" && <GameOnline />} */}
       {gameMode !== "menu" && (
-        <button onClick={() => setGameMode("menu")}>🏠 Back to Menu</button>
+        <button onClick={() => setGameMode("menu")} className="return-select-mode">🏠 Back to Menu</button>
       )}
     </div>
   );
 };
 
 export default GameManager;
+
+
+
