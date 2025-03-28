@@ -66,6 +66,6 @@ class PongConsumer(AsyncWebsocketConsumer):
             await self.send(json.dumps({"ball":self.game.ball}))
 
             await self.send(json.dumps({"players": self.game.players}))
-            await asyncio.sleep(0.01)  # 60ms delay for smooth updates
+            await asyncio.sleep(0.06)  # 60ms delay for smooth updates
         print(f"[{self.game_id}] - LOOP ENDED - ", self.game.game_active)
 

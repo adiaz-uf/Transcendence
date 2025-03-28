@@ -6,7 +6,7 @@ class PongGame:
     def __init__(self, width=900, height=700):
         self.width = width
         self.height = height
-        self.speed_ball = 3
+        self.speed_ball = 10
         self.max_score = 10
         self.reset_game()
 
@@ -68,6 +68,15 @@ class PongGame:
         # Collision with player paddle
         for side, paddle in self.players.items():
             if self.check_ball_paddle_collision(paddle):
+                self.ball['x'] -= self.ball['rx']
+                self.ball['y'] += self.ball['ry']
+                if self.check_ball_paddle_collision(paddle):
+                    self.ball['x'] += self.ball['rx']
+                    self.ball['y'] -= self.ball['ry']
+                    self.ball['ry'] *= -1
+                    break
+                self.ball['x'] += self.ball['rx']
+                self.ball['y'] -= self.ball['ry']
                 self.ball['rx'] *= -1.1  # increase ball speed
                 break
 

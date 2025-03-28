@@ -105,34 +105,13 @@ const Gameplay = ({ gameState, InitGame }) => {
     };
   }, []);
 
-//   useEffect(() => {
-//     // Escucha de eventos de WebSocket para goles
-//     webSocketClient.socket.onmessage = (event) => {
-//       const data = JSON.parse(event.data);
-
-//       // Cuando se recibe el mensaje de un gol
-//       if (data.type === "goal") {
-//         const updatedGameState = { ...gameState };
-//         updatedGameState.players.left.score = data.left_score;  // Actualiza puntaje de la leftuierda
-//         updatedGameState.players.right.score = data.der_score;  // Actualiza puntaje de la derecha
-//         InitGame(updatedGameState);  // Actualiza el estado del juego
-//       }
-//     };
-
-//     return () => {
-//       // Cleanup cuando el componente se desmonte
-//       if (webSocketClient.socket) {
-//         webSocketClient.socket.onmessage = null;
-//       }
-//     };
-//   }, [gameState, InitGame]);
-
   // Handle game drawing
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
+    let lastFrameTime = performance.now();
     const renderPlayerOne = (ctx) => {
       if (gameState && gameState.players && gameState.players.left) {
         ctx.fillStyle = "white";
@@ -157,43 +136,92 @@ const Gameplay = ({ gameState, InitGame }) => {
       }
     };
 
-    const render = () => {
-      // board
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const render = () => {
 
-      // Draw center line
-      ctx.strokeStyle = "white";
-      ctx.setLineDash([5, 15]);
-      ctx.beginPath();
-      ctx.moveTo(canvas.width / 2, 0);
-      ctx.lineTo(canvas.width / 2, canvas.height);
-      ctx.stroke();
+        const currentTime = performance.now();
+        const delta = currentTime - lastFrameTime;
+        lastFrameTime = currentTime;
+    
+        // Clear old frame
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      renderPlayerOne(ctx);
-      renderPlayerTwo(ctx);
+        // Draw playing field and players
+        drawField(ctx, canvas);
+        renderPlayerOne(ctx);
+        renderPlayerTwo(ctx);
 
-      if (gameState && gameState.ball) {
-        ctx.beginPath();
-        ctx.arc(gameState.ball.x, gameState.ball.y, gameState.ball.radio, 0, Math.PI * 2);
-        ctx.fill();
+        if (gameState && gameState.ball) {
+            const fraction = 1 - Math.exp(-0.01 * delta);
+            // Update ball position directly
+            gameState.ball.prevX ??= gameState.ball.x;
+            gameState.ball.prevY ??= gameState.ball.y;
 
-        ctx.font = "24px Arial";
-        ctx.fillText(`${gameState.players.right.score || 0}`, canvas.width / 4, 50);
-        ctx.fillText(`${gameState.players.left.score || 0}`, (3 * canvas.width) / 4, 50);
-      }
+            // Interpolate from the previous position to the target position
+            gameState.ball.prevX = lerp(gameState.ball.prevX, gameState.ball.x, fraction);
+            gameState.ball.prevY = lerp(gameState.ball.prevY, gameState.ball.y, fraction);
 
-    };
+            drawBall({ ball: {
+                x: gameState.ball.prevX,
+                y: gameState.ball.prevY,
+                radio: gameState.ball.radio
+              } }, ctx);
+            drawScores(gameState, ctx, canvas);
+        }
+    }
 
     GameFrameRef.current = requestAnimationFrame(render);
     return () => cancelAnimationFrame(GameFrameRef.current);
-  }, [gameState]);
+}, [gameState]);
+
+
+  function update(gameState, ctx, canvas) {
+    ctx.clearRect(gameState.ball.x -5, gameState.ball.y -5,10,10);
+    drawBall(gameState.ball.x, gameState.ball.y, 30);
+    gameState.ball.x = lerp(gameState.ball.x, canvas.width, 0.1);
+    gameState.ball.y = lerp(gameState.ball.y, canvas.height, 0.1);
+   requestAnimationFrame(update);
+  }
+
+  function drawField(ctx, canvas){
+    // Draw Field
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw center line
+    ctx.strokeStyle = "white";
+    ctx.setLineDash([5, 15]);
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2, 0);
+    ctx.lineTo(canvas.width / 2, canvas.height);
+    ctx.stroke();
+    
+  }
+
+  function drawScores(gameState, ctx, canvas){
+    ctx.font = "24px Arial";
+    ctx.fillText(`${gameState.players.right.score || 0}`, canvas.width / 4, 50);
+    ctx.fillText(`${gameState.players.left.score || 0}`, (3 * canvas.width) / 4, 50);
+  }
+
+  function drawBall(gameState, ctx) {
+    console.log("drawBall function called")
+    ctx.fillStyle = '#66DA79';
+    ctx.beginPath(); 
+    ctx.arc(gameState.ball.x, gameState.ball.y, gameState.ball.radio, 0, 2 * Math.PI, false);
+    ctx.fill();
+  }
+
+  function lerp(min, max, fraction) {
+    console.log("lerp function called")
+    return (max - min) * fraction + min;
+  };
 
   // <PlayOrStopBtn/>
   //<button onClick={() => {setGameMode(null)}}>Return to menu </button>
   //<span className='m-4'>Game Mode: {gameMode}</span>
   //<p>Game State: {gameState ? JSON.stringify(gameState) : "Waiting for game data..."}</p>
+ 
+
   return (
     <div className="gameplay-container">
       <div className="game-header">

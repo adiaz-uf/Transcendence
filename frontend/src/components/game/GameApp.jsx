@@ -34,14 +34,80 @@ const GameApp = () => {
     },
     // Estado ball
     ball: {
-        'x': 400,
-        'y': 200,
+        'x': 450,
+        'y': 350,
         'radio': 5,
         'rx': 11,
         'ry': -11
     }
   });
 
+  /* const lerp = (start, end, t) => start + (end - start) * t;
+
+  const StateLinkerGameWebSocket = useCallback((setGameState) => {
+    webSocketClient.listenForGameUpdates((gameUpdate) => {
+      console.log("Received game update:", gameUpdate);
+  
+      if (gameUpdate.pelota) {
+        const animationDuration = 30; // in milliseconds
+        const startTime = performance.now();
+        
+        const animate = () => {
+          const currentTime = performance.now();
+          const elapsedTime = currentTime - startTime;
+          const t = Math.min(elapsedTime / animationDuration, 1); // Value from 0 to 1
+  
+          setGameState((prevState) => {
+            const newPelota = {
+              x: lerp(prevState.pelota.x, gameUpdate.pelota.x, t),
+              y: lerp(prevState.pelota.y, gameUpdate.pelota.y, t),
+            };
+  
+            if (t < 1) {
+              requestAnimationFrame(animate);
+            }
+  
+            return {
+              ...prevState,
+              pelota: newPelota,
+              players: {
+                ...prevState.players,
+                ...gameUpdate.players,
+                left: {
+                  ...prevState.players.left,
+                  ...(gameUpdate.players?.left || {}),
+                },
+                right: {
+                  ...prevState.players.right,
+                  ...(gameUpdate.players?.right || {}),
+                },
+              },
+            };
+          });
+        };
+  
+        requestAnimationFrame(animate); // Start the animation
+        
+      } else { // When there's no `pelota` update, just update players
+        setGameState((prevState) => ({
+          ...prevState,
+          players: {
+            ...prevState.players,
+            ...gameUpdate.players,
+            left: {
+              ...prevState.players.left,
+              ...(gameUpdate.players?.left || {}),
+            },
+            right: {
+              ...prevState.players.right,
+              ...(gameUpdate.players?.right || {}),
+            },
+          }
+        }));
+      }
+    });
+  }, []); */
+  
   const StateLinkerGameWebSocket = useCallback((setGameState) => {
     webSocketClient.listenForGameUpdates((gameUpdate) => {
       console.log("Received game update:", gameUpdate);
@@ -100,6 +166,7 @@ const GameApp = () => {
         <Menu onGameModeSelect={handleGameModeSelect} />
       ) : (
         <Gameplay gameState={gameState} InitGame={InitGame} />
+        
       )}
 
       {/* Componente InvitePlayer */}
