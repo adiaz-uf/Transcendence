@@ -53,6 +53,7 @@ const Menu = ({ onGameModeSelect }) => {
             </Button>
             <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-join")}>
               Join Tournament
+              
             </Button>
           </div>
           )}
