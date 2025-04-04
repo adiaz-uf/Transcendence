@@ -163,3 +163,4 @@ export const InvitePlayer = ({ showModal, handleCloseModal}) => {
   );
 };
 
+export default InvitePlayer;
