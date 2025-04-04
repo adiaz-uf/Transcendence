@@ -46,6 +46,18 @@ export const Menu = () => {
       setTournamentButtons(true);
     } else if (mode === "tournament") {
       setTournamentButtons(false);
+    }  else if (mode === "tournament-create") {
+      //TODO
+      setGameMode("online-create");
+      setIsMultiplayer(true);
+      setPlayerType("host");
+      navigate("/invite");
+    }  else if (mode === "tournament-join") {
+      //TODO
+      setGameMode("online-join");
+      setIsMultiplayer(true);
+      setPlayerType("guest");
+      navigate("/join");
     } else if (mode === "online-create") {
       setGameMode("online-create");
       setIsMultiplayer(true);
@@ -65,7 +77,7 @@ export const Menu = () => {
         <>
         <Button className="m-3" onClick={() => handleSelectMode("local")}>Local Game (2P)</Button>
         <Button className="m-3" onClick={() => handleSelectMode("online")}>Online Game</Button>
-        <Button className="m-3" onClick={() => handleSelectMode("tournament")}>Online Game</Button>
+        <Button className="m-3" onClick={() => handleSelectMode("tournament")}>Tournament</Button>
         </>)
       }
       { OnlineButtons && (

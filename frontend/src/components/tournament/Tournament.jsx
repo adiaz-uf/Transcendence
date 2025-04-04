@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Gameplay from "./Gameplay";
-import webSocketClient from "./ClientWebSocket";
+import Gameplay from "../game/Gameplay";
+import webSocketClient from "../contexts/ClientWebSocket";
 import api from "../../api";
 import Menu from "../navigation/Menu";
-import InvitePlayer from "./InvitePlayerModal";
+import InvitePlayer from "../game/InvitePlayerModal";
 // import Login from "../../pages/Login";  // Asegúrate de importar el componente Login
 import { ACCESS_TOKEN } from "../../constants";
 import MessageBox from '../MessageBox';
