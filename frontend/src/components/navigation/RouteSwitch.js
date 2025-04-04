@@ -31,7 +31,8 @@ export default function RouterSwitch() {
 					<Route path ='/setup-2fa' element={<Setup2FA />} />
 					<Route path ='/profile' element ={<Profile/>}/>
 					<Route path ='/alert' element ={<Alert/>}/>
-					<Route path ='/join' element ={<Join/>}/>
+					<Route path ='/join' element ={<JoinPage/>}/>
+					<Route path ='/invite' element ={<InvitePage/>}/>
 					<Route path ='*' element ={<NotFound/>}/>
             </Routes>
         </BrowserRouter>
