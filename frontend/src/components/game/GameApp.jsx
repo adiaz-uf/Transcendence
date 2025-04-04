@@ -1,13 +1,5 @@
-import React, { useState } from "react";
 import Gameplay from "./Gameplay";
-import webSocketClient from "./ClientWebSocket";
-import api from "../../api";
-import Menu from "./Menu";
-import InvitePlayer from "./InvitePlayerModal";
-// import Login from "../../pages/Login";  // Asegúrate de importar el componente Login
-import { ACCESS_TOKEN } from "../../constants";
-import MessageBox from '../MessageBox';
-import GameBoard from "../GamesBoard";
+import { WebSocketProvider } from '../contexts/ClientWSContext';
 
 // Parent component that holds game mode selection and WebSocket connection state
 const GameApp = () => {
@@ -150,6 +142,34 @@ const GameApp = () => {
       />
     </div>
   );
+  return (
+        <div className="game-container">
+          <WebSocketProvider>
+            <Gameplay/>
+          </WebSocketProvider>
+        </div>
+        );
 };
-
 export default GameApp;
+
+
+{/* {message && (
+  <MessageBox 
+    message={message}
+    type={"error"}
+    onClose={() => setMessage(null)}
+  />
+)} */}
+
+{/* Componente InvitePlayer */}
+{/* <InvitePlayer 
+  showModal={showModal} 
+  handleCloseModal={handleCloseModal}
+  gameMode={gameMode}
+  setGameMode={setGameMode}
+  setMatchId={setMatchId}
+  />
+<GameBoard 
+  showBoard={showBoard}
+  handleCloseBoard={handleCloseBoard}
+/> */}
