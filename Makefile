@@ -67,5 +67,4 @@ re:  ## Rebuild and restart the project from scratch
 	$(MAKE) build
 	$(MAKE) up
 
-bel: ## It's Bel
-	test
+bel: ## Bel Test
