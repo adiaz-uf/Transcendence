@@ -23,11 +23,11 @@ const GameApp = () => {
     game_active: true,
     // Players state
     players: {
-      'left': { 'x': 10, 'y': 150, 'width': 15, 'height': 115, 'speed': 5, 'score': 0 },
-      'right': { 'x': 880, 'y': 150, 'width': 15, 'height': 115, 'speed': 5, 'score': 0 }
+      'left': { 'x': 10, 'y': 290, 'width': 15, 'height': 120, 'speed': 5, 'score': 0 },
+      'right': { 'x': 880, 'y': 290, 'width': 15, 'height': 120, 'speed': 5, 'score': 0 }
     },
     // Ball state
-    ball: { 'x': 400, 'y': 200, 'radio': 5, 'rx': 11, 'ry': -11 }
+    ball: { 'x': 445, 'y': 345, 'radio': 5, 'rx': 11, 'ry': -11 }
   });
 
   const StateLinkerGameWebSocket = (setGameState) => {

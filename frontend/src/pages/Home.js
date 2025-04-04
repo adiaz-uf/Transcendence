@@ -27,6 +27,8 @@ const HomeRouter = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/pong" element={<GameApp/>} />
+                <Route path ='/join' element ={<JoinPage/>}/>
+                <Route path ='/invite' element ={<InvitePage/>}/>
             </Routes>
         </GameSettingProvider>
       </>

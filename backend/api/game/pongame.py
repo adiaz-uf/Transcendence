@@ -40,7 +40,7 @@ class PongGame:
                     'x': 10,
                     'y': self.__height / 2 - 50,
                     'width': 15,
-                    'height': 115,
+                    'height': 120,
                     'speed': 5,
                     'score': 0
             },
@@ -49,7 +49,7 @@ class PongGame:
                     'x': self.__width - 20,
                     'y': self.__height / 2 - 50,
                     'width': 15,
-                    'height': 115,
+                    'height': 120,
                     'speed': 5,
                     'score': 0
             }
