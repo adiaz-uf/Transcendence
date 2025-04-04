@@ -12,11 +12,11 @@ from django_otp.plugins.otp_totp.models import TOTPDevice
 import logging
 logger = logging.getLogger(__name__)
 
-from api.models import Tournament, Match
+from api.models import Tournament, Match, UserProfile
 from api.serializer.tournament.serializer import TournamentSerializer
 
 
 class CreateTournamentView(generics.CreateAPIView):
-    permission_classes = [AllowAny]
     serializer_class = TournamentSerializer
+    permission_classes = [AllowAny]
     queryset = Tournament.objects.all()

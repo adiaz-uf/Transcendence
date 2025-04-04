@@ -9,11 +9,17 @@ const Menu = ({ onGameModeSelect }) => {
   const [showTournamentButtons, setShowTournamentButtons] = useState(false); // Controls the Buttons state
   
   const HandleOnlineSelect = (mode) => {
-    if (mode === "online") {
+    if (mode === "online" && showOnlineButtons) {
+      setShowOnlineButtons(false)
+    }
+    else if (mode === "online") {
       setShowOnlineButtons(true)
     }
-    if (mode === "tournament") {
-      setShowTournamentButtons(true)
+    if (mode === "tournament" && showTournamentButtons) {
+      setShowTournamentButtons(false)
+    }
+    else if (mode === "tournament") {
+      setShowOnlineButtons(true)
     }
   };
 
@@ -43,6 +49,9 @@ const Menu = ({ onGameModeSelect }) => {
             <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-join")}>
               Join Game
             </Button>
+            <Button className='m-3 mt-4 btn-success' onClick={() => HandleOnlineSelect("online")}>
+              Back
+            </Button>
           </div>
           )}
 
@@ -53,6 +62,9 @@ const Menu = ({ onGameModeSelect }) => {
             </Button>
             <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("tournament-join")}>
               Join Tournament - Do not press
+            </Button>
+            <Button className='m-3 mt-4 btn-success' onClick={() => HandleOnlineSelect("tournament")}>
+              Back
             </Button>
           </div>
           )}

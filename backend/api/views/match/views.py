@@ -23,8 +23,8 @@ from api.serializer.match.serializer import MatchSerializer
 #------------------------------------MAtches views -----------------------------------------
 
 class AvailableMatchView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated]
     serializer_class = MatchSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return Match.objects.filter(
