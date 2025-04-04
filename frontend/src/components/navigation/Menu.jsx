@@ -9,6 +9,7 @@ export const Menu = () => {
   const { setGameMode, setIsMultiplayer, setPlayerType } = useGameSetting();
 
   const [OnlineButtons, setOnlineButtons] = useState(false);
+  const [TournamentButtons, setTournamentButtons] = useState(false);
   const [InvitationModal, setInvationBool] = useState(false);
 
   const navigate = useNavigate();
@@ -37,8 +38,14 @@ export const Menu = () => {
 
 
       //navigate("/game");
-    } else if (mode === "online") {
+    } else if (mode === "online" && !OnlineButtons) {
       setOnlineButtons(true);
+    } else if (mode === "online") {
+      setOnlineButtons(false);
+    } else if (mode === "tournament" && !TournamentButtons) {
+      setTournamentButtons(true);
+    } else if (mode === "tournament") {
+      setTournamentButtons(false);
     } else if (mode === "online-create") {
       setGameMode("online-create");
       setIsMultiplayer(true);
@@ -54,17 +61,27 @@ export const Menu = () => {
   return (
     <div className="menu-container">
       <h1>Select Game Mode</h1>
-      { !OnlineButtons? (
+      { !OnlineButtons && !TournamentButtons && (
         <>
         <Button className="m-3" onClick={() => handleSelectMode("local")}>Local Game (2P)</Button>
         <Button className="m-3" onClick={() => handleSelectMode("online")}>Online Game</Button>
-        </>)
-        :
-        (<>
-        <Button className="m-3 btn-success" onClick={() => handleSelectMode("online-create")}>Create Game</Button>
-        <Button className="m-3 btn-success" onClick={() => handleSelectMode("online-join")}>Join Game</Button>
+        <Button className="m-3" onClick={() => handleSelectMode("tournament")}>Online Game</Button>
         </>)
       }
+      { OnlineButtons && (
+        <>
+        <Button className="m-3 btn-success" onClick={() => handleSelectMode("online-create")}>Create Game</Button>
+        <Button className="m-3 btn-success" onClick={() => handleSelectMode("online-join")}>Join Game</Button>
+        <Button className="m-3 btn-success" onClick={() => handleSelectMode("online")}>Back</Button>
+        </>
+      )}
+      { TournamentButtons && (
+        <>
+        <Button className="m-3 btn-success" onClick={() => handleSelectMode("tournament-create")}>Create Tournament</Button>
+        <Button className="m-3 btn-success" onClick={() => handleSelectMode("tournament-join")}>Join Tournament</Button>
+        <Button className="m-3 btn-success" onClick={() => handleSelectMode("tournament")}>Back</Button>
+        </>
+      )}
       { InvitationModal && (
           <InvitePlayer showModal={InvitationModal} handleCloseModal={()=>{setInvationBool(false)}}>
 
