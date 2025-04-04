@@ -49,11 +49,12 @@ class Match(models.Model):
 
 #Tournament Info
 class Tournament(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True) # QUERY: duplicate fields date and created at?
     name = models.CharField(max_length=35)
     created_at = models.DateTimeField(editable=False, null=True)
     owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     matches = models.ManyToManyField("Match")
+    matches = models.ManyToManyField("UserProfile")      # Add players here
 
     class Meta:
         db_table = 'tournament'

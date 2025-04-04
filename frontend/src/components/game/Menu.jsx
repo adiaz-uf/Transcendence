@@ -20,7 +20,7 @@ const Menu = ({ onGameModeSelect }) => {
   return (
     <div className="menu-container">
           <h1>Select GamePlay mode</h1>
-          {!showOnlineButtons && !showTournamentButtons(
+          {!showOnlineButtons && !showTournamentButtons && (
           <div>
           <Button className='m-3 mt-4' onClick={() => onGameModeSelect("local")}>
             Local Game (2P)
@@ -48,12 +48,11 @@ const Menu = ({ onGameModeSelect }) => {
 
           {showTournamentButtons && (
           <div>
-            <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-create")}>
-              Create Tournament
+            <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("tournament-create")}>
+              Create Tournament - Do not press
             </Button>
-            <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-join")}>
-              Join Tournament
-              
+            <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("tournament-join")}>
+              Join Tournament - Do not press
             </Button>
           </div>
           )}

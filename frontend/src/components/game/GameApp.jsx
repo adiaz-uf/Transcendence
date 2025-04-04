@@ -114,6 +114,14 @@ const GameApp = () => {
       setShowBoard(true);
       setGameMode(mode);
     }
+    else if (mode === "tournament-create") {
+      //TODO
+      
+    }
+    else if (mode === "tournament-join") {
+      //TODO
+
+    }
   };
 
   return (<div className="game-container">

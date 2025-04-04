@@ -28,7 +28,7 @@ class AvailableMatchView(generics.ListAPIView):
 
     def get_queryset(self):
         return Match.objects.filter(
-            is_multiplayer=True,
+            is_multiplayer=True,                            
             player_right=self.request.user
         ).select_related('player_left', 'player_right')
         

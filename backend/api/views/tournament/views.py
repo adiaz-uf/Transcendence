@@ -17,6 +17,6 @@ from api.serializer.tournament.serializer import TournamentSerializer
 
 
 class CreateTournamentView(generics.CreateAPIView):
+    permission_classes = [AllowAny]
     serializer_class = TournamentSerializer
     queryset = Tournament.objects.all()
-    permission_classes = [AllowAny]
