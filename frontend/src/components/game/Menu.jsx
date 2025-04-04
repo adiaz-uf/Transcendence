@@ -5,18 +5,22 @@ import '../../styles/game.css'
 
 
 const Menu = ({ onGameModeSelect }) => {
-  const [showButtons, setShowButtons] = useState(false); // Controls the Buttons state
+  const [showOnlineButtons, setShowOnlineButtons] = useState(false); // Controls the Buttons state
+  const [showTournamentButtons, setShowTournamentButtons] = useState(false); // Controls the Buttons state
   
   const HandleOnlineSelect = (mode) => {
     if (mode === "online") {
-      setShowButtons(true)
+      setShowOnlineButtons(true)
+    }
+    if (mode === "tournament") {
+      setShowTournamentButtons(true)
     }
   };
 
   return (
     <div className="menu-container">
           <h1>Select GamePlay mode</h1>
-          {!showButtons && (
+          {!showOnlineButtons && !showTournamentButtons(
           <div>
           <Button className='m-3 mt-4' onClick={() => onGameModeSelect("local")}>
             Local Game (2P)
@@ -24,9 +28,14 @@ const Menu = ({ onGameModeSelect }) => {
           <Button className='m-3 mt-4' onClick={() => HandleOnlineSelect("online")}>
             Online Game
           </Button>
+          <Button className='m-3 mt-4' onClick={() => HandleOnlineSelect("tournament")}>
+            Tournament
+          </Button>
           </div>
           )}
-          {showButtons && (
+          
+          
+          {showOnlineButtons && (
           <div>
             <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-create")}>
               Create Game
@@ -36,6 +45,18 @@ const Menu = ({ onGameModeSelect }) => {
             </Button>
           </div>
           )}
+
+          {showTournamentButtons && (
+          <div>
+            <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-create")}>
+              Create Tournament
+            </Button>
+            <Button className='m-3 mt-4 btn-success' onClick={() => onGameModeSelect("online-join")}>
+              Join Tournament
+            </Button>
+          </div>
+          )}
+
     </div>
   );
 };
