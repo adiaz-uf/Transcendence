@@ -1,6 +1,6 @@
 import React, { createContext, useRef, useContext, useEffect, useState } from "react";
 import ClientWebSocket from "../game/ClientWebSocket";
-import { useGameSetting } from "./MenuContext";
+import { useGameSetting } from "./GameContext";
 const WebSocketContext = createContext();
 
 function initializeGameState() {
@@ -63,7 +63,7 @@ export const WebSocketProvider = ({ children }) => {
         console.log("WebSocketProvider mounted");
       }, []);
       
-      useEffect(() => {
+    useEffect(() => {
         if (WSref) console.log("WebSocket initialized:", WSref);
       }, [WSref]);
       

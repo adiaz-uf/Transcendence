@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 import {GETCheckUsernameExists, POSTcreateMatch} from "../api-consumer/fetch";
-import { useGameSetting } from '../contexts/MenuContext';
+import { useGameSetting } from '../contexts/GameContext';
 import {useNavigate} from "react-router-dom";
 
 export const InvitePlayer = ({ showModal, handleCloseModal}) => {

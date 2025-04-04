@@ -122,6 +122,9 @@ const GameApp = () => {
       ) : (
         <Gameplay gameState={gameState} InitGame={InitGame} />
       )}
+
+
+      
       {message && (
         <MessageBox 
           message={message}

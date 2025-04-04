@@ -4,7 +4,7 @@ import '../styles/App.css';
 import {Menu} from '../components/navigation/Menu';
 
 import { Routes, Route } from "react-router-dom";
-import {GameSettingProvider} from '../components/contexts/MenuContext';
+import {GameSettingProvider} from '../components/contexts/GameContext';
 
 import GameApp from '../components/game/GameApp';
 
@@ -25,6 +25,7 @@ const HomeRouter = () => {
       <NavBar />
         <GameSettingProvider>
             <Routes>
+                {/*En recargar pagina perdemos datos de todos componenetes superiores*/}
                 <Route path="/" element={<Home />} />
                 <Route path="/pong" element={<GameApp/>} />
                 <Route path ='/join' element ={<JoinPage/>}/>
