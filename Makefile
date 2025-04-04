@@ -66,3 +66,6 @@ re:  ## Rebuild and restart the project from scratch
 	$(MAKE) down
 	$(MAKE) build
 	$(MAKE) up
+
+bel: ## It's Bel
+	test
